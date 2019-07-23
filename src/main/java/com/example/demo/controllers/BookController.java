@@ -17,28 +17,28 @@ public class BookController {
 	@Autowired 
 	IBookService bookService;
 
-// Get All Notes
+// Get All Books
     @GetMapping("/books")
-    public List<Book> getAllNotes() {
+    public List<Book> getAllBooks() {
         return bookService.findAll();
     }
 
-// Create a new Note
-    @PostMapping("/books")
-    public Book createNote(@Valid @RequestBody Book book) {
+// Create a new Book
+    @PostMapping("/book/{id}")
+    public Book createBook(@Valid @RequestBody Book book) {
         return bookService.save(book);
     }
 
-// Get a Single Note
-    @GetMapping("/books/{id}")
-    public Book getNoteById(@PathVariable(value = "id") Long bookId) throws BookNotFoundException {
+// Get a Single Book
+    @GetMapping("/book/{id}")
+    public Book getBookById(@PathVariable(value = "id") Long bookId) throws BookNotFoundException {
         return bookService.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));
     }
 
-// Update a Note
-    @PutMapping("/books/{id}")
-    public Book updateNote(@PathVariable(value = "id") Long bookId,
+// Update a Book
+    @PutMapping("/book/{id}")
+    public Book updateBook(@PathVariable(value = "id") Long bookId,
                            @Valid @RequestBody Book bookDetails) throws BookNotFoundException {
 
     	Book book = bookService.findById(bookId)
@@ -53,8 +53,8 @@ public class BookController {
         return updatedBook;
     }
 
-// Delete a Note
-    @DeleteMapping("/books/{id}")
+// Delete a Book
+    @DeleteMapping("/book/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable(value = "id") Long bookId) throws BookNotFoundException {
         Book book = bookService.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));
