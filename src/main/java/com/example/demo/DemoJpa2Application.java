@@ -21,7 +21,7 @@ public class DemoJpa2Application {
 		@Override
 		public void run(ApplicationArguments args) throws Exception {
 			bookService.save(Book.builder().book_name("Ender's Game").author_name("who knows").isbn("d3k5kd").build());
-			bookService.save(Book.builder().book_name("The Name of the Wind").author_name("Pat Rothfuss").isbn("eou67nn").build());
+			bookService.save(Book.builder().book_name("The Name of the Wind").author_name("Pat Rothfuss").isbn("eou67n").build());
 		}
 	}
 
